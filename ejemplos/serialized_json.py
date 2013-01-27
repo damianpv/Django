@@ -1,4 +1,5 @@
-# Autor: Damian Perez
+# Author: Damian Perez
+# Description: Obtener datos de un modelo, serializarlos y generar JSON
 
 from django.http import HttpResponse
 from django.core import serializers
