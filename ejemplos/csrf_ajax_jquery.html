@@ -1,0 +1,57 @@
+<style type="text/css">
+#btn_send { cursor: pointer; }
+</style>
+<script lang="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('#btn_send').click(function(){
+		$.ajax({
+			type: "POST",
+			headers: { "X-CSRFToken": getCookie("csrftoken") },
+			data: {
+				texto: '123456',
+				//csrfmiddlewaretoken: '{{ csrf_token }}'
+			},
+			url: "/form/",
+			success: function(data) {
+				alert('ok')
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert('error')
+				//debugger;
+			}
+		});
+	});
+
+	function getCookie(c_name)
+    {
+        if (document.cookie.length > 0)
+        {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1)
+            {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start,c_end));
+            }
+        }
+        return "";
+    }
+    /*
+    // set cookie
+    $.cookie('cookiename', 'cookievalue');
+
+    // read cookie
+    var myCookie = $.cookie('cookiename');
+
+    // delete cookie
+    $.cookie('cookiename', null);
+    */
+});
+</script>
+
+<div id="btn_send">Enviar</div>
+
